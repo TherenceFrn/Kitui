@@ -1,9 +1,18 @@
 var express = require('express');
-var router = express.Router();
+var app = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+app.post('/css', (req, res) => {
+  // Récupérer les paramètres envoyés depuis le client Vue.js
+  const params = req.body;
+  
+  // Exemple de réponse JSON
+  const response = {
+    status: 'success',
+    message: `Le fichier CSS pour les paramètres ${JSON.stringify(params)} a été récupéré avec succès.`
+  };
+
+  // Envoyer la réponse en format JSON
+  res.status(200).json(response);
 });
 
-module.exports = router;
+module.exports = app;

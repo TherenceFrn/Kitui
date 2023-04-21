@@ -1,17 +1,28 @@
 {
-  "name": "Kitui",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "name": "kitui",
+  "version": "1.0.0",
+  "description": "Kit ui",
+  "main": "index.js",
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "node-sass-middleware": "0.11.0",
-    "pug": "2.0.0-beta11"
-  }
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "http-errors": "^2.0.0",
+    "nodemon": "^2.0.22",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "nodemon": "nodemon .",
+    "dev": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TherenceFrn/Kitui.git"
+  },
+  "author": "TherenceFrn, Samuelguenerie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TherenceFrn/Kitui/issues"
+  },
+  "homepage": "https://github.com/TherenceFrn/Kitui#readme"
 }
