@@ -1,18 +1,31 @@
 var express = require('express');
 var app = express.Router();
+const path = require('path');
 
 app.post('/css', (req, res) => {
-  // Récupérer les paramètres envoyés depuis le client Vue.js
   const params = req.body;
   
-  // Exemple de réponse JSON
-  const response = {
-    status: 'success',
-    message: `Le fichier CSS pour les paramètres ${JSON.stringify(params)} a été récupéré avec succès.`
-  };
+  const cssContent = `
+    :root {
+      --main-color: ${params.mainColor};
+      --secondary-color: ${params.secondaryColor};
+      --font-size: ${params.fontSize}px;
+    }
 
-  // Envoyer la réponse en format JSON
-  res.status(200).json(response);
+    /* Autres règles CSS en fonction des paramètres */
+  `;
+
+  const tmpFilePath = path.join(__dirname, 'temp.css');
+  require('fs').writeFileSync(tmpFilePath, cssContent);
+
+  res.sendFile(tmpFilePath, err => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erreur lors de la récupération du fichier CSS');
+    }
+
+    require('fs').unlinkSync(tmpFilePath);
+  })
 });
 
 module.exports = app;
