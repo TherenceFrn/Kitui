@@ -8,12 +8,14 @@
     "fs": "0.0.1-security",
     "http-errors": "^2.0.0",
     "nodemon": "^2.0.22",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pm2": "^5.3.0"
   },
   "devDependencies": {},
   "scripts": {
     "nodemon": "nodemon .",
-    "dev": "node ."
+    "dev": "node .",
+    "pm2": "pm2 start . --name kitui"
   },
   "repository": {
     "type": "git",
