@@ -71,6 +71,12 @@ button {
   font-size: ${params.button.fontSize}px;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(${params.grid.columns} ,1fr);
+  gap: ${params.grid.gap}px;
+}
+
 /* Autres règles CSS à ajouter */
   `;
 
