@@ -1,8 +1,76 @@
-POST http://127.0.0.1:3000/css HTTP/1.1
+POST http://127.0.0.1:3002/css HTTP/1.1
 content-type: application/json
 
 {
-    "mainColor": "#fff",
-    "secondaryColor": "#eee",
-    "fontSize": 14
+  "container": {
+    "maxWidth": 1320,
+    "padding": 16
+  },
+  "grid": {
+    "columns": 12,
+    "gap": 16,
+    "breakpoints": {
+      "sm": 576,
+      "md": 768,
+      "lg": 992,
+      "xl": 1200,
+      "xxl": 1400
+    }
+  },
+  "colors": {
+    "primary": {
+      "default": "#D81E5B",
+      "darken": null,
+      "lighten": null
+    },
+    "dark": {
+      "default": "#2F2F30",
+      "darken": null,
+      "lighten": null
+    },
+    "light": {
+      "default": "#F6F5FA",
+      "darken": null,
+      "lighten": null
+    }
+  },
+  "fonts": {
+    "titles": {
+      "family": "sans-serif",
+      "h1": {
+        "size": 40,
+        "weight": 500
+      },
+      "h2": {
+        "size": 32,
+        "weight": 500
+      },
+      "h3": {
+        "size": 28,
+        "weight": 500
+      },
+      "h4": {
+        "size": 24,
+        "weight": 500
+      },
+      "h5": {
+        "size": 20,
+        "weight": 500
+      },
+      "h6": {
+        "size": 16,
+        "weight": 500
+      }
+    },
+    "paragraphs": {
+      "family": "sans-serif",
+      "size": 16
+    }
+  },
+  "button": {
+    "backgroundColor": "primary",
+    "margin": 8,
+    "borderRadius": 8,
+    "fontSize": 16
+  }
 }

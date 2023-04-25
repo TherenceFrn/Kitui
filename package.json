@@ -4,6 +4,7 @@
   "description": "Kit ui",
   "main": "index.js",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "fs": "0.0.1-security",
     "http-errors": "^2.0.0",
@@ -11,7 +12,6 @@
     "path": "^0.12.7",
     "pm2": "^5.3.0"
   },
-  "devDependencies": {},
   "scripts": {
     "nodemon": "nodemon .",
     "dev": "node .",

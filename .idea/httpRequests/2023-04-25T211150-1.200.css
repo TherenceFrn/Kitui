@@ -1,0 +1,21 @@
+
+:root {
+    --primary: undefined;
+    --primary-darken: undefined;
+    --primary-lighten: undefined;
+    --dark: undefined;
+    --dark-darken: undefined;
+    --dark-lighten: undefined;
+    --light: undefined;
+    --light-darken: undefined;
+    --light-lighten: undefined;
+}
+
+.container {
+    max-width: 1320px;
+    padding: 16px;
+}
+
+
+/* Autres règles CSS en fonction des paramètres */
+  

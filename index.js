@@ -1,6 +1,7 @@
 const express = require('express');
+require('dotenv').config()
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001 ;
 const hostname = "127.0.0.1"
 
 app.use(express.json());

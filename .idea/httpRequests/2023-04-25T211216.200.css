@@ -1,0 +1,21 @@
+
+:root {
+    --primary: #D81E5B;
+    --primary-darken: null;
+    --primary-lighten: null;
+    --dark: #2F2F30;
+    --dark-darken: null;
+    --dark-lighten: null;
+    --light: #F6F5FA;
+    --light-darken: null;
+    --light-lighten: null;
+}
+
+.container {
+    max-width: 1320px;
+    padding: 16px;
+}
+
+
+/* Autres règles CSS en fonction des paramètres */
+  
