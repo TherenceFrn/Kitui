@@ -80,10 +80,11 @@ button {
 /* Autres règles CSS à ajouter */
   `;
 
-  const tmpFilePath = path.join(__dirname , '../history/temp.css');
+  const tmpFilePath = path.join(__dirname , `../history/${getCurrentDateTime()}.css`);
   fs.writeFileSync(tmpFilePath, cssContent);
 
-  res.sendFile(tmpFilePath, err => {
+
+  res.status(200).sendFile(tmpFilePath, err => {
     if (err) {
       console.error(err);
       res.status(500).send('Erreur lors de la récupération du fichier CSS');
@@ -92,5 +93,44 @@ button {
     // fs.unlinkSync(tmpFilePath);
   })
 });
+
+app.get('/css', (req, res) => {
+  const historyDir = './history';
+
+  // Récupérer la liste des fichiers dans le dossier "history"
+  fs.readdir(historyDir, (err, files) => {
+    if (err) throw err;
+
+    // Filtrer la liste des fichiers pour ne garder que ceux qui ont une extension ".css"
+    const cssFiles = files.filter(file => path.extname(file) === '.css');
+
+    // Trier la liste des fichiers par date de modification décroissante
+    cssFiles.sort((a, b) => {
+      return fs.statSync(`${historyDir}/${b}`).mtime.getTime() -
+             fs.statSync(`${historyDir}/${a}`).mtime.getTime();
+    });
+
+    // Récupérer les 10 derniers fichiers
+    const latestFiles = cssFiles.slice(0, 10);
+
+    // Construire la liste des URLs des 10 derniers fichiers
+    const urls = latestFiles.map(file => `/history/${file}`);
+
+    // Retourner la liste des URLs en tant que tableau JSON
+    res.json(urls);
+  });
+});
+
+function getCurrentDateTime() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  return `${year}${month}${day}-${hours}${minutes}${seconds}`;
+}
 
 module.exports = app;
