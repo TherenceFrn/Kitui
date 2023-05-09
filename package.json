@@ -16,7 +16,7 @@
   "scripts": {
     "nodemon": "nodemon .",
     "dev": "node .",
-    "pm2": "pm2 start . --name kitui"
+    "pm2": "pm2 node . --name kitui"
   },
   "repository": {
     "type": "git",
