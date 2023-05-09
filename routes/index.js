@@ -65,7 +65,7 @@ p {
 }
 
 button {
-  background-color: ${params.button.backgroundColor};
+  background-color: var(--${params.button.backgroundColor});
   margin: ${params.button.margin}px;
   border-radius: ${params.button.borderRadius}px;
   font-size: ${params.button.fontSize}px;
@@ -80,7 +80,7 @@ button {
 /* Autres règles CSS à ajouter */
   `;
 
-  const tmpFilePath = path.join(__dirname, 'temp.css');
+  const tmpFilePath = path.join(__dirname , '../history/temp.css');
   fs.writeFileSync(tmpFilePath, cssContent);
 
   res.sendFile(tmpFilePath, err => {
@@ -89,7 +89,7 @@ button {
       res.status(500).send('Erreur lors de la récupération du fichier CSS');
     }
 
-    fs.unlinkSync(tmpFilePath);
+    // fs.unlinkSync(tmpFilePath);
   })
 });
 
