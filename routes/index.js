@@ -97,27 +97,36 @@ button {
 app.get('/css', (req, res) => {
   const historyDir = './history';
 
-  // Récupérer la liste des fichiers dans le dossier "history"
   fs.readdir(historyDir, (err, files) => {
     if (err) throw err;
 
-    // Filtrer la liste des fichiers pour ne garder que ceux qui ont une extension ".css"
     const cssFiles = files.filter(file => path.extname(file) === '.css');
 
-    // Trier la liste des fichiers par date de modification décroissante
     cssFiles.sort((a, b) => {
       return fs.statSync(`${historyDir}/${b}`).mtime.getTime() -
              fs.statSync(`${historyDir}/${a}`).mtime.getTime();
     });
 
-    // Récupérer les 10 derniers fichiers
     const latestFiles = cssFiles.slice(0, 10);
 
-    // Construire la liste des URLs des 10 derniers fichiers
     const urls = latestFiles.map(file => `/history/${file}`);
 
-    // Retourner la liste des URLs en tant que tableau JSON
     res.json(urls);
+  });
+});
+
+app.get('/cssFile', (req, res) => {
+  const filePath = req.query.path;
+  if (!filePath) {
+    return res.status(400).send('Le chemin du fichier est manquant dans les paramètres de la requête.');
+  }
+  fs.readFile(path.join(__dirname, '../' + filePath), 'utf-8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Une erreur s\'est produite lors de la lecture du fichier.');
+    }
+    res.set('Content-Type', 'text/css');
+    res.status(200).send(data);
   });
 });
 
