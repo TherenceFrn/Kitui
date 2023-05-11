@@ -6,7 +6,8 @@ const fs = require('fs');
 app.post('/css', (req, res) => {
   const params = req.body;
 
-  const cssContent = `:root {
+  const cssContent = `
+:root {
   --primary: ${params.colors.primary.default};
   --primary-darken: ${params.colors.primary.darken};
   --primary-lighten: ${params.colors.primary.lighten};
@@ -16,6 +17,12 @@ app.post('/css', (req, res) => {
   --light: ${params.colors.light.default};
   --light-darken: ${params.colors.light.darken};
   --light-lighten: ${params.colors.light.lighten};
+  
+  --bp-small: ${params.grid.breakpoints.sm};
+  --bp-medium: ${params.grid.breakpoints.md};
+  --bp-large: ${params.grid.breakpoints.lg};
+  --bp-xlarge: ${params.grid.breakpoints.xl};
+  --bp-xxlarge: ${params.grid.breakpoints.xxl};
 }
 
 .container {
@@ -131,15 +138,7 @@ app.get('/cssFile', (req, res) => {
 });
 
 function getCurrentDateTime() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-
-  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+  return Date.parse(new Date());
 }
 
 module.exports = app;
