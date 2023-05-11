@@ -18,11 +18,11 @@ app.post('/css', (req, res) => {
   --light-darken: ${params.colors.light.darken};
   --light-lighten: ${params.colors.light.lighten};
   
-  --bp-small: ${params.grid.breakpoints.sm};
-  --bp-medium: ${params.grid.breakpoints.md};
-  --bp-large: ${params.grid.breakpoints.lg};
-  --bp-xlarge: ${params.grid.breakpoints.xl};
-  --bp-xxlarge: ${params.grid.breakpoints.xxl};
+  --bp-small: ${params.grid.breakpoints.sm}px;
+  --bp-medium: ${params.grid.breakpoints.md}px;
+  --bp-large: ${params.grid.breakpoints.lg}px;
+  --bp-xlarge: ${params.grid.breakpoints.xl}px;
+  --bp-xxlarge: ${params.grid.breakpoints.xxl}px;
 }
 
 .container {
@@ -87,7 +87,7 @@ button {
 /* Autres règles CSS à ajouter */
   `;
 
-  const tmpFilePath = path.join(__dirname , `../history/${Date.parse(new Date())}.css`);
+  const tmpFilePath = path.join(__dirname , `../history/` + Date.parse(new Date()) + `.css`);
   fs.writeFileSync(tmpFilePath, cssContent);
 
 
