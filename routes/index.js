@@ -87,7 +87,7 @@ button {
 /* Autres règles CSS à ajouter */
   `;
 
-  const tmpFilePath = path.join(__dirname , `../history/${getCurrentDateTime()}.css`);
+  const tmpFilePath = path.join(__dirname , `../history/${Date.parse(new Date())}.css`);
   fs.writeFileSync(tmpFilePath, cssContent);
 
 
@@ -137,8 +137,5 @@ app.get('/cssFile', (req, res) => {
   });
 });
 
-function getCurrentDateTime() {
-  return Date.parse(new Date());
-}
 
 module.exports = app;
